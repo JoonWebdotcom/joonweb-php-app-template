@@ -1,0 +1,16 @@
+{
+  "name": "joonweb/php-app-scaffold",
+  "description": "Professional PHP Scaffold for Joonweb Apps",
+  "type": "project",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "require": {
+    "php": "^8.0",
+    "joonweb/joonweb-sdk": "*",
+    "bramus/router": "~1.6"
+  }
+}
