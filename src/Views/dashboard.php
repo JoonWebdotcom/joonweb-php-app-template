@@ -96,7 +96,25 @@
         <?php endif; ?>
 
         <div class="glass-panel">
-            <h2 style="margin-top:0; font-size: 18px; margin-bottom: 20px;">Your Store Products</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="margin:0; font-size: 18px;">Your Store Products</h2>
+                <button id="openPickerBtn" style="background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 500;">Select Products via App Bridge</button>
+            </div>
+            
+            <script>
+                document.getElementById('openPickerBtn').addEventListener('click', async function(e) {
+                    e.preventDefault();
+                    if (window.joonwebApp && window.joonwebApp.actions.Components) {
+                        const Components = window.joonwebApp.actions.Components.create(window.joonwebApp);
+                        try {
+                            const data = await Components.show('ProductPicker');
+                            console.log('Product Picker Data:', data);
+                        } catch(err) {
+                            console.error('Picker error:', err);
+                        }
+                    }
+                });
+            </script>
             
             <?php if (empty($products)): ?>
                 <div class="empty-state">
