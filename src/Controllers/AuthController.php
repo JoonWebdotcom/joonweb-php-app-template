@@ -54,8 +54,7 @@ class AuthController {
             $app_slug = $_GET['app_slug'] ?? $config['api_key']; // Default to client_id if app_slug is missing
             $site_hash = $_GET['site_hash'] ?? '';
             
-            $base_url = "https://accounts.joonweb.com/site/";
-            $embed_url = $base_url . '?sitehash=' . urlencode($site_hash) . '&apps&' . urlencode($app_slug);
+            $embed_url = \JoonWeb\Helper::getEmbeddedAppUrl($site_hash, $app_slug);
             
             header("Location: " . $embed_url);
             exit;
