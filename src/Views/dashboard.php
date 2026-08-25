@@ -83,6 +83,12 @@
     </style>
 </head>
 <body>
+    <div data-joonweb-app 
+         data-api-key="<?php echo htmlspecialchars($apiKey ?? ''); ?>" 
+         data-site="<?php echo htmlspecialchars($site ?? ''); ?>" 
+         data-host="<?php echo htmlspecialchars($host ?? ''); ?>">
+    </div>
+
     <div class="container">
         <div class="glass-panel">
             <h1>🚀 Welcome to your Joonweb App</h1>

@@ -40,12 +40,14 @@ class DashboardController {
             $response = $api->product->all(['limit' => 20]);
             
             // Normalize response to array
-            $products = is_object($response) && isset($response->data) 
-                ? $response->data 
-                : (is_array($response) ? $response : []);
+            $products = isset($response['products']) ? $response['products'] : [];
+            
+            $config = require __DIR__ . '/../../config/joonweb.php';
             
             $this->renderView('dashboard', [
                 'site' => $siteDomain, 
+                'apiKey' => $config['api_key'] ?? '',
+                'host' => $_GET['host'] ?? '',
                 'products' => $products
             ]);
 
