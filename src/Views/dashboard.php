@@ -8,18 +8,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #4F46E5;
-            --primary-hover: #4338CA;
-            --bg-color: #F3F4F6;
-            --surface: rgba(255, 255, 255, 0.7);
+            --primary: #111827;
+            --bg-color: #F9FAFB;
+            --surface: #FFFFFF;
+            --border: #E5E7EB;
             --text-main: #111827;
             --text-muted: #6B7280;
+            --success: #059669;
+            --success-bg: #D1FAE5;
         }
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #e0e7ff 0%, #f3f4f6 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-color);
             margin: 0;
-            padding: 40px 20px;
+            padding: 32px 24px;
             color: var(--text-main);
             min-height: 100vh;
         }
@@ -27,59 +29,78 @@
             max-width: 1000px;
             margin: 0 auto;
         }
-        .glass-panel {
+        .card {
             background: var(--surface);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            margin-bottom: 24px;
         }
-        h1 { margin-top: 0; font-size: 24px; font-weight: 700; color: var(--primary); }
+        h1 { margin: 0 0 8px 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em; }
+        .subtitle { color: var(--text-muted); font-size: 15px; margin: 0; line-height: 1.5; }
         .error-banner {
-            background: #FEE2E2;
+            background: #FEF2F2;
             color: #991B1B;
-            padding: 15px;
+            padding: 16px;
             border-radius: 8px;
-            margin-bottom: 20px;
-            font-weight: 500;
+            margin-bottom: 24px;
+            font-size: 14px;
+            border: 1px solid #FECACA;
         }
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            gap: 16px;
         }
         .product-card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            border: 1px solid #E5E7EB;
-            transition: all 0.3s ease;
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 16px;
+            border: 1px solid var(--border);
             display: flex;
             align-items: center;
-            gap: 15px;
-        }
-        .product-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-            border-color: var(--primary);
+            gap: 16px;
         }
         .product-icon {
-            width: 50px;
-            height: 50px;
-            background: #EEF2FF;
-            color: var(--primary);
-            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            background: #F3F4F6;
+            color: var(--text-muted);
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
         }
-        .product-info h3 { margin: 0 0 5px 0; font-size: 16px; }
+        .product-icon svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 1.5; fill: none; }
+        .product-info h3 { margin: 0 0 4px 0; font-size: 14px; font-weight: 500; }
         .product-info p { margin: 0; color: var(--text-muted); font-size: 14px; }
-        .empty-state { text-align: center; padding: 40px; color: var(--text-muted); }
+        .empty-state { text-align: center; padding: 48px 24px; color: var(--text-muted); font-size: 14px; }
+        
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 24px;
+        }
+        .header-section h2 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            font-family: inherit;
+        }
     </style>
 </head>
 <body>
@@ -90,21 +111,21 @@
     </div>
 
     <div class="container">
-        <div class="glass-panel">
-            <h1>🚀 Welcome to your Joonweb App</h1>
-            <p>This is a standalone PHP MVC scaffold. It securely connects to the Joonweb API and renders a beautiful UI directly from the server.</p>
+        <div class="card">
+            <h1>App Dashboard</h1>
+            <p class="subtitle">This is a standalone PHP MVC scaffold connected securely to the Joonweb API.</p>
         </div>
 
         <?php if (!empty($error)): ?>
             <div class="error-banner">
-                ⚠️ <?php echo htmlspecialchars($error); ?>
+                <?php echo htmlspecialchars($error); ?>
             </div>
         <?php endif; ?>
 
-        <div class="glass-panel">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h2 style="margin:0; font-size: 18px;">Your Store Products</h2>
-                <button id="openPickerBtn" style="background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 500;">Select Products via App Bridge</button>
+        <div class="card" style="padding: 24px;">
+            <div class="header-section">
+                <h2>Recent Products</h2>
+                <button id="openPickerBtn" class="btn-primary">Select via App Bridge</button>
             </div>
             
             <script>
@@ -134,7 +155,9 @@
                             $price = is_object($product) ? ($product->price ?? '0.00') : ($product['price'] ?? '0.00');
                         ?>
                         <div class="product-card">
-                            <div class="product-icon">📦</div>
+                            <div class="product-icon">
+                                <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                            </div>
                             <div class="product-info">
                                 <h3><?php echo htmlspecialchars($title); ?></h3>
                                 <p><?php echo htmlspecialchars($price); ?></p>
